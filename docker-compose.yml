@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  web:
+    restart: always
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./app/:/home/app/
+    depends_on:
+      - "db"
+
+  db:
+    restart: always
+    image: my_postgres:base
+    ports:
+      - "5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    env_file: .env
+
+volumes:
+    db_data:
+      external: true     
