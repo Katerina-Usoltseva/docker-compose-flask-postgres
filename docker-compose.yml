@@ -10,16 +10,19 @@ services:
       - ./app/:/home/app/
     depends_on:
       - "db"
-
+      - "redis"
   db:
     restart: always
-    image: my_postgres:base
+    image: postgres:base
     ports:
       - "5432"
     volumes:
       - db_data:/var/lib/postgresql/data
     env_file: .env
-
+    
+  redis:
+    image: redis:alpine
+                           
 volumes:
     db_data:
       external: true     

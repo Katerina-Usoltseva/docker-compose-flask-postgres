@@ -1,4 +1,0 @@
-Flask
-request>=3.4,<3.7
-psycopg2>2.7,<3.0
-
